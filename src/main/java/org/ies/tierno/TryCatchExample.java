@@ -11,6 +11,7 @@ public class TryCatchExample {
     private final static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         try {
             int numerator = askNumber("Introduce el numerador");
 

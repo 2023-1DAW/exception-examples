@@ -15,6 +15,7 @@ public class ReadFileExample {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         log.info("Introduzca el path al fichero que desea leer");
         String file = scanner.nextLine();
         try {
@@ -24,11 +25,22 @@ public class ReadFileExample {
             log.error("No se ha encontrado el archivo " + file);
         } catch (IOException e) {
             log.error("No se ha podido leer la línea", e);
+        } finally {
+            scanner.close();
         }
     }
 
     public static String readFirstLine(String file) throws FileNotFoundException, IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        return reader.readLine();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String firstLine = reader.readLine();
+            return firstLine;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
     }
+
 }
